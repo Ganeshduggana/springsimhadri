@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<input type="button" id=getData value="getList" />
+	<div class="container">
+		<table id="table" border="1">
+
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Email</th>
+
+			</tr>
+		</table>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<script>
+		var restURL = "/getAllUsers";
+
+		$('#getData').click(function() {
+			$.ajax({
+				type : 'GET',
+				url : restURL,
+				dataType : "json",
+			});
+			return false;
+		});
+
+		/* function renderList(data) {
+			alert(data);
+		} */
+	</script>
+	
+</body>
+</html>
+

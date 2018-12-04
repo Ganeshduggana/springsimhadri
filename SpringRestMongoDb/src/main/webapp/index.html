@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" charset=utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div id="container">
+		<label>Id:</label><input type="text" name="id" id="uid"><br>
+		<label>Name:</label><input type="text" name="name" id="name"><br>
+		<label>Email:</label><input type="text" name="email" id="email"><br>
+		<input type="button" id="postData" value="Submit">
+		
+		
+	</div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<script>
+	$(document).ready(function(){
+		const dataModel = {
+				id : $('#uid').val(),
+				email : $('#name').val(),
+				name : $('#email').val()
+		};
+		$('#postData').click(function(){
+			
+			$.ajax({
+				type : "POST",
+				dataType : "json",
+				url : "/users",
+				/* success: function(data){
+					showDisplay(data);
+				}, */
+				data : JSON.stringify(dataModel),
+				contentType : "application/json"
+			});
+			
+			/* showDisplay(data){
+				$('#uid').val() = "";
+				$('#name').val()= "";
+				$('#email').val() = "";
+			} */
+			
+			
+		});
+		
+		$.ajax({
+			type : "GET",
+			dataType : "json",
+			url : "/getAllUsers",
+			data : JSON.stringify(dataModel),
+			contentType : "application/json"
+		});
+	});
+		
+	</script>
+
+
+
+	<div class="container">
+		<table id="table" border="1">
+
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Email</th>
+
+			</tr>
+		</table>
+	</div>
+
+</body>
+</html>
